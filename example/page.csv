@@ -1,0 +1,8 @@
+url,path,title,body,field_second_value
+http://drupalconnect.com/,front,Drupal Connect,#block-block-13|#block-views-portfolio-block-1,
+http://drupalconnect.com/services,services,Drupal Services,.views-row-first.highlight-box,.views-row-last.highlight-box
+http://drupalconnect.com/services/drupal-data-migration,services/migration,Drupal Migration,.region-content-inner,
+http://drupalconnect.com/services/drupal-development,services/drupal-development,Drupal Development,.region-content-inner,
+http://drupalconnect.com/projects/smosh,portfolio/smosh,Drupal Connect Portfolio: Smosh,.region-content-inner,
+http://drupalconnect.com/projects/greenopoliscom,portfolio/thinkgreenrewards,Drupal Connect Portfolio: Think Green Rewards,.region-content-inner,
+http://drupalconnect.com/projects/stanford-university,portfolio/stanford-school-engineering,Drupal Connect Portfolio: Stanford,.region-content-inner,

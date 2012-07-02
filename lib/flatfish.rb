@@ -8,7 +8,6 @@ require 'fileutils'
 require 'active_record'
 
 require 'awesome_print'
-require 'logging'
 
 require 'flatfish/pleuronectiformes'
 require 'flatfish/page'

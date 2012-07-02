@@ -1,8 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'nokogiri'
+gem 'activerecord'
 gem 'mysql2'
-gem 'logging'
-gem 'active_record'
 
 gem 'awesome_print'

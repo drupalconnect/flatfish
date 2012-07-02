@@ -1,0 +1,18 @@
+source: '' #use the web
+
+db_user: 'root'
+db_pass: 'root'
+db: 'flatfish-sample'
+
+# NOTE: these map to Drupal content types and AR database tables
+types:
+  Article:
+    csv: '/home/tloudon/workspace/flatfish-sample/article.csv'
+    host: 'http://drupalconnect.com'
+  Page:
+    csv: '/home/tloudon/workspace/flatfish-sample/page.csv'
+    host: 'http://drupalconnect.com'
+
+development:
+  debug: false
+  max_rows: 1000
