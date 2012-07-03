@@ -31,7 +31,7 @@ module Flatfish
       @cd = (@url[-1,1] == '/')? @url: @url.slice(0..@url.rindex('/'))
       @schema = schema
       @host = host
-      @source = config['source']
+      @local_source = config['local_source']
 
       Flatfish::Url.creds = {:http_basic_authentication => [config['basic_auth_user'], config['basic_auth_pass']]}
     end
@@ -43,8 +43,8 @@ module Flatfish
 
     # load html from local or web
     def load_html
-      file = @source + @url.sub(@host, '')
-      if (@url != @host) && !@source.nil? && File.exists?(file)
+      file = @local_source + @url.sub(@host, '')
+      if (@url != @host) && !@local_source.nil? && File.exists?(file)
         f = File.open(file)
         @doc = Nokogiri::XML(f)
         f.close
@@ -123,9 +123,9 @@ module Flatfish
     # read in blob
     def read_in_blob(url)
       # assume local file
-      file = url.sub(@host, @source)
+      file = url.sub(@host, @local_source)
 
-      unless @source.nil? || !File.exists?(file)
+      unless @local_source.nil? || !File.exists?(file)
         blob = file.read
       else
         blob = Flatfish::Url.open_url(URI.escape(url))

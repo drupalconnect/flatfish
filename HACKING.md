@@ -11,7 +11,7 @@ Nokogiri is an XML/HTML parser that supports CSS Selectors--basically, you get j
 ### Basic Process Flow
 A Flatfish object is instantiated with a YAML config file.  The YAML includes DB info, some general options, and specifics on the Types of web pages to be processed.  Each Type has a CSV and URL Host.  A table for each Type is created if necessary and an Active Record subclass is generated dynamically.  Each row of the CSV is parsed, allowing Flatfish to:
 1. Grab the HTML from a remote host or a local directory
-2. Attemp to handle both HTTPS Redirects and Basic Authentication
+2. Attempt to handle both HTTPS Redirects and Basic Authentication
 3. Correct all link, image, and file paths
 4. Tokenize all links, images, and files
 5. Update or create all files and images saving them to the DB--eg, multiple copies of the same image are possible with unique URLs
