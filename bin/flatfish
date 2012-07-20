@@ -42,6 +42,7 @@ end
 
 puts "Running Flatfish..."
 puts Time.now
-Flatfish.new.ingurgitate
+plueronectiforme = Flatfish.new ARGV[0]
+plueronectiforme.ingurgitate
 puts "All done"
 puts Time.now

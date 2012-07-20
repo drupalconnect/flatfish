@@ -19,7 +19,12 @@ require 'flatfish/url'
 module Flatfish 
   class << self
     #allow alias Flatfish.new etc
-    def new(yml = './config.yml')
+    def new(yml = nil)
+      yml ||= './config.yml'
+      if !File.exists?(yml) then
+        puts "ERROR: No Config file"
+        exit 1
+      end
       Flatfish::Pleuronectiformes.new(yml)
     end
 

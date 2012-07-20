@@ -9,6 +9,7 @@ module Flatfish
     def initialize(ymal)
       @config = YAML.load_file(ymal)
       db_conn() # establish AR conn
+      @klasses = Hash.new
     end
 
     # main loop for flatfish
@@ -22,6 +23,7 @@ module Flatfish
         create_klass(k)
         parse
       end
+      output_schema
     end
 
     # Create the Klass
@@ -31,6 +33,7 @@ module Flatfish
         # commence hackery
         create_table(k) unless ActiveRecord::Base.connection.tables.include?(k.tableize)
         @klass = Class.new(Page)
+        @klasses[k] = @klass
         @klass.table_name = k.tableize
     end
 
@@ -74,16 +77,35 @@ module Flatfish
     end
 
 
-    #def output_schema 
-    #  File.open('schema.yaml', 'w') do |out|
-    #    page_attributes, media_attributes = Hash.new 
-    #    Flatfish::Page.new.attributes.each { |a| page_attributes = {a[0] => Flatfish::Page.columns_hash[a[0]].sql_type}}
-    #    Flatfish::Media.new.attributes.each { |a| media_attributes = {a[0] => Flatfish::Media.columns_hash[a[0]].sql_type}}
-    #    output = {"schema" => [{"pages" => [page_attributes, {"primary key" => "id"}], {"media" => [media_attributes, {"primary key" => "id"}]} }]}
-    #    out.write output
-    #  end
-    #end
-    # db conn
+    # generate a dynamic schema.yml for Migrate mapping
+    def output_schema
+      # TODO REFACTOR THIS ISH
+      klasses = @klasses
+      File.open('schema.yml', 'w') do |out|
+        output = Hash.new
+        output["schema"] = []
+        klasses["Media"] = Flatfish::Media
+
+        klasses.each_pair do |k,v|
+          klass_attributes = Hash.new
+          v.new.attributes.each { |a| klass_attributes[a[0]] = split_type(v.columns_hash[a[0]].sql_type) }
+          output["schema"] << {k => [{"machine_name" => k.tableize}, {"fields" => klass_attributes}, {"primary key" => ["id"]}]}
+        end
+        out.write output.to_yaml
+      end
+    end
+
+    # helper function to convert AR sql_type to
+    # Drupal format;
+    # eg :type => varchar(255) to :type => varchar, :length => 255 
+    def split_type type
+      if type =~ /\(/ then
+        x = type.split("(")
+        return {"type" => x[0], "length" => x[1].sub(")","").to_i }
+      else
+        return {"type" => type}
+      end
+    end
 
 
     def db_conn
