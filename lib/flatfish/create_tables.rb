@@ -21,7 +21,7 @@ module Flatfish
     def self.setup
       create_table :media do |t|
         t.string :url
-        t.binary :data, :limit => 4294967295
+        t.binary :contents, :limit => 4294967295
       end
     end
   end

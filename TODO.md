@@ -12,5 +12,4 @@ need better overall design and refactor the dupe blocks for images and hrefs
 
 
 fix syntax for config file
-update media data -> content
 output schema
