@@ -1,6 +1,44 @@
 #!/usr/bin/env ruby
 
 require 'flatfish'
+require 'getoptlong'
+
+def banner error_code
+  puts "Flatfish scrapes HTML\n\n"
+  puts "Run flatfish in a directory with a config.yml file or pass one in"
+  puts "For more information see the README or visit the repo https://github.com/drupalstaffing/flatfish\n\n"
+  puts "Usage: flatfish myconfig.yml OR flatfish"
+  puts "Options:"
+  puts "-h|--help"
+  puts "-v|--version"
+  exit error_code
+end
+
+opts = GetoptLong.new(
+  [ "--help",        "-h",   GetoptLong::NO_ARGUMENT ],
+  [ "--version",     "-v",   GetoptLong::NO_ARGUMENT ]
+)
+
+begin
+  opts.each do |opt, arg|
+    case opt
+    when "--help"
+      banner 0 
+
+    when "--version"
+      puts "VERSION " + Flatfish::VERSION
+      exit 0
+    end
+  end
+
+rescue 
+  banner 1 
+end
+
+if !File.exists?('config.yml') && ARGV.empty? then
+  puts "ERROR: You need a configuration file.\n\n" 
+  banner 1
+end
 
 puts "Running Flatfish..."
 puts Time.now

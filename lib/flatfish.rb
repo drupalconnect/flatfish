@@ -19,7 +19,7 @@ require 'flatfish/url'
 module Flatfish 
   class << self
     #allow alias Flatfish.new etc
-    def new(yml = './config.yaml')
+    def new(yml = './config.yml')
       Flatfish::Pleuronectiformes.new(yml)
     end
 
