@@ -97,7 +97,7 @@ module Flatfish
 
     # helper function to convert AR sql_type to
     # Drupal format;
-    # eg :type => varchar(255) to :type => varchar, :length => 255 
+    # eg :type => varchar(255) to :type => varchar, :length => 255
     def split_type type
       if type =~ /\(/ then
         x = type.split("(")
