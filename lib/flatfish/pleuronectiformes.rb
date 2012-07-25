@@ -3,7 +3,7 @@ require_relative 'page'
 module Flatfish
 
   class Pleuronectiformes
-    attr_reader :config, :schema
+    attr_reader :config, :schema, :klasses
 
     # load in the config
     def initialize(ymal)
@@ -21,7 +21,7 @@ module Flatfish
         @csv_file = v["csv"]
         @host = v["host"]
         create_klass(k)
-        parse
+        parse(k)
       end
       output_schema
     end
@@ -54,7 +54,7 @@ module Flatfish
     end
 
     # loop thru csv
-    def parse
+    def parse(k)
       csv = load_csv
       @cnt = 0
       csv.each do |row|
@@ -62,7 +62,7 @@ module Flatfish
           break if @cnt == @config['max_rows']
           @cnt += 1
           page = @klass.find_or_create_by_url(row[0])
-          puts "created or found page #{page.id} with URL #{row[0]}"
+          puts "Processing #{k}.#{page.id} with URL #{row[0]}"
           page.setup(row, @config, @schema, @host)
           page.process
           page.save!

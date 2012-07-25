@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- #specify UTF-8 (unicode) characters
 require_relative 'url'
 
 module Flatfish 
@@ -66,7 +67,13 @@ module Flatfish
         selectors.split('|').each do |selector|
           update_hrefs(selector)
           update_imgs(selector)
-          html[@schema[i]] += (@doc.css(selector).nil? ? '' : @doc.css(selector).to_s.gsub("%5BFLATFISH", '[').gsub("FLATFISH%5D", ']'))
+          if @doc.css(selector).nil? then
+            field = ''
+          else
+            # sub tokens and gnarly MS Quotes
+            field = @doc.css(selector).to_s.gsub("%5BFLATFISH", '[').gsub("FLATFISH%5D", ']').gsub(/[”“]/, '"').gsub(/[‘’]/, "'")
+          end
+          html[@schema[i]] +=  field
         end
       end
       @data = {
