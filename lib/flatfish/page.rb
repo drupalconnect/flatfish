@@ -121,7 +121,7 @@ module Flatfish
       media = Flatfish::Media.find_by_url(url)
       if media.nil?
         media = Flatfish::Media.create(:url => url) do |m|
-          m.data = read_in_blob(url)
+          m.contents = read_in_blob(url)
         end
       end
       media
