@@ -83,13 +83,13 @@ module Flatfish
       klasses = @klasses
       File.open('schema.yml', 'w') do |out|
         output = Hash.new
-        output["schema"] = []
+        output["schema"] = Hash.new
         klasses["Media"] = Flatfish::Media
 
         klasses.each_pair do |k,v|
           klass_attributes = Hash.new
           v.new.attributes.each { |a| klass_attributes[a[0]] = split_type(v.columns_hash[a[0]].sql_type) }
-          output["schema"] << {k => [{"machine_name" => k.tableize}, {"fields" => klass_attributes}, {"primary key" => ["id"]}]}
+          output["schema"].merge!({k => {"machine_name" => k.tableize, "fields" => klass_attributes, "primary key" => ["id"]}})
         end
         out.write output.to_yaml
       end
