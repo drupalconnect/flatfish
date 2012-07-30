@@ -2,7 +2,7 @@ local_source: '' #use the web
 
 db_user: 'root'
 db_pass: 'root'
-db: 'flatfish-sample'
+db: 'flatfish_sample'
 
 # NOTE: these map to Drupal content types and AR database tables
 types:
@@ -14,5 +14,4 @@ types:
     host: 'http://drupalconnect.com'
 
 development:
-  debug: false
   max_rows: 1000
