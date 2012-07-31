@@ -7,10 +7,10 @@ db: 'flatfish_sample'
 # NOTE: these map to Drupal content types and AR database tables
 types:
   Article:
-    csv: '/home/tloudon/workspace/flatfish-sample/article.csv'
+    csv: '/home/tloudon/workspace/flatfish/example/article.csv'
     host: 'http://drupalconnect.com'
   Page:
-    csv: '/home/tloudon/workspace/flatfish-sample/page.csv'
+    csv: '/home/tloudon/workspace/flatfish/example/page.csv'
     host: 'http://drupalconnect.com'
 
 development:
