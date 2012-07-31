@@ -34,6 +34,10 @@ module Flatfish
       @host = host
       @local_source = config['local_source']
 
+      # handle url == host, fix mangled @cd
+      if @url == @host
+        @cd = @url + '/'
+      end
       Flatfish::Url.creds = {:http_basic_authentication => [config['basic_auth_user'], config['basic_auth_pass']]}
     end
 
