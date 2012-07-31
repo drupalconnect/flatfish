@@ -1,5 +1,5 @@
 url,path,title,body,field_second_value
-http://drupalconnect.com/,front,Drupal Connect,#block-block-13|#block-views-portfolio-block-1,
+http://drupalconnect.com,front,Drupal Connect,#block-block-13|#block-views-portfolio-block-1,
 http://drupalconnect.com/services,services,Drupal Services,.views-row-first.highlight-box,.views-row-last.highlight-box
 http://drupalconnect.com/services/drupal-data-migration,services/migration,Drupal Migration,.region-content-inner,
 http://drupalconnect.com/services/drupal-development,services/drupal-development,Drupal Development,.region-content-inner,
