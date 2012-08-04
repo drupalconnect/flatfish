@@ -1,4 +1,5 @@
-source 'http://rubygems.org'
+source :rubygems
+gemspec
 
 gem 'nokogiri'
 gem 'activerecord'
