@@ -6,11 +6,12 @@ Flatfish is a lib to scrape HTML based on a CSV with CSS selectors and configura
 The ultimate goal of Flatfish is to prep and load the HTML into Drupal.
 
 ## INSTALLATION
-Flatfish is still in development, so it's not on Rubygems just yet.  You'll need to build and install the gem manually, this is really pretty easy.  Assuming you're starting from scratch:
+Flatfish is on Rubygems, so you can just `gem install flatfish`. But if you are starting from scratch:
 
-1. We're using Ruby 1.9.3, so install that with RVM, rbenv+ruby-build, or on your own.
-2. Flatfish has a few dependencies, which are listed in the Gemfile. You can install the `bundler` gem and then use it to grab the rest of the gems at the versions specified in the Gemfile.lock by running `bundle install`--this is probably a good idea. The gems can also be installed by hand--there are only a few.
-3. We've set up a quick Rake task to build and install the Flatfish gem, so if you're using RVM (system-wide flavor) just run `rake install_gem`.  Otherwise, you can just `gem build flatfish.gemspec` and `gem install flatfish-VERSION.gem` according to your setup.
+1. We're using Ruby 1.9.3, so install that with RVM, rbenv+ruby-build, or on your own. Note there are some soft dependencies in Ruby that you should get, google or see http://goo.gl/YSvmp.
+2. At the moment, Flatfish is setup to use MySQL, so you will need to install the mysql2 gem dependencies, notably libmysqlclient-dev.
+3. Flatfish uses Nokogiri to pare the HTML, so you will also need to install its dependencies, libxslt-dev and libxml2-dev.
+4. From here you should be able to `gem install flatfish` without any issues.
 
 ## NOTES
 As Flatfish scrapes the HTML over-the-wire, it can be a bit slow (say 10 minutes for 500 pages), but you can speed things up by pointing to a local copy of your site by entering a value for `local_source` in the config.yml file (see the example directory).
