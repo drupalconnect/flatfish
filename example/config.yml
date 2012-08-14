@@ -1,11 +1,12 @@
-local_source: '' #use the web
-
 db_user: 'root'
 db_pass: 'root'
 db: 'flatfish_sample'
 
 # NOTE: these map to Drupal content types and AR database tables
 types:
+  Bio:
+    csv: '/home/tloudon/workspace/flatfish/example/bio.csv'
+    host: 'http://drupalconnect.com'
   Article:
     csv: '/home/tloudon/workspace/flatfish/example/article.csv'
     host: 'http://drupalconnect.com'
@@ -13,5 +14,9 @@ types:
     csv: '/home/tloudon/workspace/flatfish/example/page.csv'
     host: 'http://drupalconnect.com'
 
+# use the web, otherwise path to local HTML root
+local_source: ''
+
+#
 development:
   max_rows: 1000

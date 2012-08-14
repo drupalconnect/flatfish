@@ -68,7 +68,7 @@ module Flatfish
       @fields.each_with_index do |selectors, i|
         next if -1 == selectors
         html[@schema[i]] = ''
-        selectors.split('|').each do |selector|
+        selectors.split('&&').each do |selector|
           update_hrefs(selector)
           update_imgs(selector)
           if @doc.css(selector).nil? then
